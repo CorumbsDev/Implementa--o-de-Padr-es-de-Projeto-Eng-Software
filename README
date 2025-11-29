@@ -1,0 +1,52 @@
+1. Observer (Comportamental)
+
+Referência: Refactoring Guru - Observer
+
+Problema Resolvido
+O padrão Observer resolve o problema de notificação automática de múltiplos objetos quando o estado de outro objeto muda, sem criar acoplamento forte entre eles.
+
+Solução
+Define uma dependência um-para-muitos entre objetos, onde quando um objeto muda de estado, todos os seus dependentes são notificados automaticamente.
+
+Diagrama UML
+┌─────────────┐        ┌──────────────┐
+│   Subject   │        │   Observer   │
+├─────────────┤        ├──────────────┤
+│+attach(o)   │------->│+update()     │
+│+detach(o)   │        └──────────────┘
+│+notify()    │               △
+└─────────────┘               |
+         △              ┌─────────────┐
+         |              │ Concrete    │
+┌─────────────┐         │ Observer    │
+│ Concrete    │         ├─────────────┤
+│ Subject     │         │+update()    │
+├─────────────┤         └─────────────┘
+│+getState()  │
+│+setState()  │
+└─────────────┘
+
+//////////////////////////////////////////////////////////////////////////////////
+2. Factory Method (Criacional)
+
+Problema Resolvido
+O Factory Method resolve o problema de criação de objetos sem especificar suas classes concretas, permitindo que subclasses decidam qual classe instanciar.
+
+Solução
+Define uma interface para criar um objeto, mas deixa as subclasses decidirem qual classe instanciar, permitindo adiar a instanciação para as subclasses.
+
+Diagrama UML
+┌─────────────┐        ┌─────────────┐
+│   Creator   │        │   Product   │
+├─────────────┤        ├─────────────┤
+│+factoryMethod()◄─────┤+operation() │
+│+someOperation()      └─────────────┘
+└─────────────┘               △
+         △                    |
+┌─────────────┐         ┌─────────────┐
+│Concrete     │         │Concrete     │
+│Creator      │         │Product      │
+├─────────────┤         ├─────────────┤
+│+factoryMethod()       │+operation() │
+└─────────────┘         └─────────────┘
+//////////////////////////////////////////////////////////////////////////////////
