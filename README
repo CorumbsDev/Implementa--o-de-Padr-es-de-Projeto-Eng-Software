@@ -3,10 +3,10 @@
 Referência: Refactoring Guru - Observer
 
 Problema Resolvido
-O padrão Observer resolve o problema de notificação automática de múltiplos objetos quando o estado de outro objeto muda, sem criar acoplamento forte entre eles.
+Imagine um sistema de notícias onde múltiplos canais precisam ser notificados automaticamente quando uma nova notícia é publicada. Sem o Observer, teríamos um acoplamento forte entre a agência de notícias e cada canal, tornando o sistema difícil de manter e escalar.
 
 Solução
-Define uma dependência um-para-muitos entre objetos, onde quando um objeto muda de estado, todos os seus dependentes são notificados automaticamente.
+O padrão Observer cria uma relação de dependência um-para-muitos onde, quando o objeto principal (Subject) muda de estado, todos os objetos dependentes (Observers) são notificados automaticamente.
 
 Diagrama UML
 ┌─────────────┐        ┌──────────────┐
@@ -30,10 +30,10 @@ Diagrama UML
 2. Factory Method (Criacional)
 
 Problema Resolvido
-O Factory Method resolve o problema de criação de objetos sem especificar suas classes concretas, permitindo que subclasses decidam qual classe instanciar.
+Em um sistema de logística, precisamos criar diferentes tipos de veículos (caminhão, navio, avião) sem que o código cliente precise conhecer as classes concretas específicas de cada veículo.
 
 Solução
-Define uma interface para criar um objeto, mas deixa as subclasses decidirem qual classe instanciar, permitindo adiar a instanciação para as subclasses.
+O Factory Method define uma interface para criar objetos, mas permite que as subclasses decidam qual classe concreta instanciar. Isso promove o baixo acoplamento e segue o princípio de inversão de dependência.
 
 Diagrama UML
 ┌─────────────┐        ┌─────────────┐
@@ -50,3 +50,31 @@ Diagrama UML
 │+factoryMethod()       │+operation() │
 └─────────────┘         └─────────────┘
 //////////////////////////////////////////////////////////////////////////////////
+3. Adapter (Estrutural)
+
+Problema Resolvido
+Você tem um plugue americano que precisa ser usado em uma tomada europeia. As interfaces são incompatíveis e você não pode modificar nem o plugue nem a tomada.
+
+Solução
+O Adapter age como um tradutor entre duas interfaces incompatíveis, permitindo que trabalhem juntas sem modificar seu código original.
+
+Diagrama UML
+┌─────────────┐        ┌─────────────┐
+│   Client    │        │   Target    │
+├─────────────┤        ├─────────────┤
+│+request()   │------->│+request()   │
+└─────────────┘        └─────────────┘
+                               △
+                               |
+                      ┌─────────────┐
+                      │   Adapter   │
+                      ├─────────────┤
+                      │+request()   │
+                      └─────────────┘
+                               △
+                               |
+                      ┌─────────────┐
+                      │  Adaptee    │
+                      ├─────────────┤
+                      │+specificRequest()│
+                      └─────────────┘
